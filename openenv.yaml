@@ -1,0 +1,15 @@
+name: "SmartGridTriageEnv"
+version: "1.0.0"
+description: "A physics-based power distribution grid simulation. Agents act as automated operators to isolate faults, balance loads, and reroute power to critical infrastructure."
+authors:
+  - "Aman Kumar"
+entry_point: "env.grid_env:SmartGridTriageEnv"
+tags:
+  - "infrastructure"
+  - "operations"
+  - "rl-benchmark"
+  - "safe-rl"
+requirements:
+  - "pydantic>=2.0.0"
+  - "networkx>=3.0"
+  - "numpy>=1.24.0"

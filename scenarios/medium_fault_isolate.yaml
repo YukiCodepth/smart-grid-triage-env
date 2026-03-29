@@ -1,0 +1,79 @@
+# scenarios/medium_fault_isolate.yaml
+max_timesteps: 15
+initial_fault: short_circuit_E3
+
+# (Copy the exact same `nodes:` and `edges:` blocks from the Easy task above)
+# The grid topology remains identical; only the initial_fault changes how the environment boots up.
+nodes:
+  - id: SO
+    type: substation
+    power_injection_mw: 8.0
+    voltage_kv: 11.0
+    priority_weight: 10
+  - id: A
+    type: junction
+  - id: B
+    type: junction
+  - id: N1
+    type: hospital
+    power_injection_mw: -1.5
+    voltage_kv: 11.0
+    priority_weight: 10
+  - id: N2
+    type: residential
+    power_injection_mw: -1.0
+    voltage_kv: 11.0
+    priority_weight: 1
+  - id: N3
+    type: water_treatment
+    power_injection_mw: -1.2
+    voltage_kv: 11.0
+    priority_weight: 8
+  - id: N4
+    type: residential
+    power_injection_mw: -1.0
+    voltage_kv: 11.0
+    priority_weight: 1
+edges:
+  - id: E1
+    source: SO
+    target: A
+    thermal_limit_amps: 250
+    reactance: 0.05
+    breaker_state: CLOSED
+  - id: E2
+    source: A
+    target: N1
+    thermal_limit_amps: 160
+    reactance: 0.02
+    breaker_state: CLOSED
+  - id: E3
+    source: A
+    target: N2
+    thermal_limit_amps: 160
+    reactance: 0.02
+    breaker_state: CLOSED
+  - id: E4
+    source: SO
+    target: B
+    thermal_limit_amps: 250
+    reactance: 0.05
+    breaker_state: CLOSED
+  - id: E5
+    source: B
+    target: N3
+    thermal_limit_amps: 160
+    reactance: 0.02
+    breaker_state: CLOSED
+  - id: E6
+    source: B
+    target: N4
+    thermal_limit_amps: 160
+    reactance: 0.02
+    breaker_state: CLOSED
+  - id: E7
+    source: A
+    target: B
+    thermal_limit_amps: 200
+    reactance: 0.03
+    breaker_state: OPEN
