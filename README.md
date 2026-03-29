@@ -1,5 +1,10 @@
 # Smart Grid Triage: Autonomous Fault Isolation and Load-Shedding Environment
 
+🚀 **Live API / Interactive Demo:** [Hugging Face Space](https://huggingface.co/spaces/YukiCodepth/smart-grid-triage-live)  
+📖 **API Documentation (Swagger UI):** [Test the Endpoints Here](https://yukicodepth-smart-grid-triage-live.hf.space/docs)  
+
+---
+
 **Smart Grid Triage** is a high-fidelity power distribution simulator built on the **OpenEnv** framework. It is designed to evaluate Reinforcement Learning (RL) agents and Large Language Models (LLMs) on their ability to manage complex distribution networks during catastrophic failures, focusing on maintaining critical infrastructure (hospitals, substations) while minimizing Aggregate Technical and Commercial (AT&C) losses.
 
 ---
