@@ -1,4 +1,3 @@
-````markdown
 # Smart Grid Triage: Autonomous Fault Isolation and Load-Shedding Environment
 
 **Smart Grid Triage** is a high-fidelity power distribution simulator built on the **OpenEnv** framework. It is designed to evaluate Reinforcement Learning (RL) agents and Large Language Models (LLMs) on their ability to manage complex distribution networks during catastrophic failures, focusing on maintaining critical infrastructure (hospitals, substations) while minimizing Aggregate Technical and Commercial (AT&C) losses.
@@ -55,8 +54,20 @@ To bridge the gap between AI research and DISCOM operations, the environment tra
 
 ## System Validation
 
-### 1. The Simulation Loop Architecture
+### i. The Simulation Loop Architecture
 The environment utilizes a strict, unidirectional data flow to prevent data leakage between the agent and the physics engine.
+
+### ii. Physics Engine Verification
+The DC Power Flow solver is verified against Kirchhoff’s Circuit Laws using a suite of automated PyTest unit tests to ensure mathematical integrity before agent interaction.
+![Physics Test Coverage](assets/pytest_results.jpg)
+
+### iii. Real-time Telemetry Tracking
+During execution, the environment tracks operational metrics essential for DISCOM management, including technical losses and hardware stress.
+![Telemetry Output](assets/benchmark_telemetry.jpg)
+
+### iv. Containerization Success
+The environment is fully containerized with a non-root security context, ready for instant inference deployment.
+![Docker Build](assets/docker_build.jpg)
 
 ```mermaid
 graph TD
@@ -94,7 +105,7 @@ The environment is fully containerized with a non-root security context, ready f
 ```bash
 git clone [https://huggingface.co/spaces/your-username/smart-grid-triage](https://huggingface.co/spaces/your-username/smart-grid-triage)
 cd smart-grid-triage
-pip install -r requirements.txt
+pip install -r requirements.txt (if not working use: pip3)
 ```
 
 ### Physics Verification
@@ -141,5 +152,3 @@ python inference.py
 
 This environment is built to support beyond-LLM research, including **Graph Neural Networks (GNN)**. The provided `GridGNN` baseline demonstrates how nodal features (voltage, injection, priority) can be processed through Graph Convolutional layers to learn topology-aware switching policies.
 
-```
-```
