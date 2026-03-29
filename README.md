@@ -129,6 +129,11 @@ export MODEL_NAME="gpt-4-turbo"
 export HF_TOKEN="your_token_here"
 python inference.py
 ```
+### Environment Stress Testing
+
+For evaluation purposes, the repository includes a standalone stress-testing script to validate the throughput and stability of the OpenEnv API and the underlying physics engine under rapid concurrent stepping.
+```bash
+python stress_test.py
 
 -----
 
@@ -142,12 +147,12 @@ python inference.py
 │   ├── telemetry.py     # AT&C and Wear Tracking
 │   └── gnn_agent.py     # Graph Neural Network baseline architecture
 ├── scenarios/           # YAML Task Specifications
+├── stress_test.py       # Automated environment throughput and stability evaluator
 ├── tests/               # PyTest Suite
 ├── assets/              # System validation images
 ├── Dockerfile           # HF Spaces Deployment Config
 ├── app.py               # FastAPI Server for Automated Grading
 └── openenv.yaml         # Environment Manifest
-```
 
 -----
 
