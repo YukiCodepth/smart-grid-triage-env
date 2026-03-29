@@ -57,18 +57,6 @@ To bridge the gap between AI research and DISCOM operations, the environment tra
 ### i. The Simulation Loop Architecture
 The environment utilizes a strict, unidirectional data flow to prevent data leakage between the agent and the physics engine.
 
-### ii. Physics Engine Verification
-The DC Power Flow solver is verified against Kirchhoff’s Circuit Laws using a suite of automated PyTest unit tests to ensure mathematical integrity before agent interaction.
-![Physics Test Coverage](assets/pytest_results.jpg)
-
-### iii. Real-time Telemetry Tracking
-During execution, the environment tracks operational metrics essential for DISCOM management, including technical losses and hardware stress.
-![Telemetry Output](assets/benchmark_telemetry.jpg)
-
-### iv. Containerization Success
-The environment is fully containerized with a non-root security context, ready for instant inference deployment.
-![Docker Build](assets/docker_build.jpg)
-
 ```mermaid
 graph TD
     A[LLM / GNN Agent] -->|Action: toggle_breaker| B(OpenEnv API Layer)
@@ -78,6 +66,21 @@ graph TD
     E -->|Tracks AT&C Losses| F(Reward Grader)
     F -->|Returns Score & JSON| A
 ````
+
+### ii. Physics Engine Verification
+The DC Power Flow solver is verified against Kirchhoff’s Circuit Laws using a suite of automated PyTest unit tests to ensure mathematical integrity before agent interaction.
+
+![Physics Test Coverage](assets/pytest_results.jpg)
+
+### iii. Real-time Telemetry Tracking
+During execution, the environment tracks operational metrics essential for DISCOM management, including technical losses and hardware stress.
+
+![Telemetry Output](assets/benchmark_telemetry.jpg)
+
+### iv. Containerization Success
+The environment is fully containerized with a non-root security context, ready for instant inference deployment.
+
+![Docker Build](assets/docker_build.jpg)
 
 ### 2\. Physics Engine Verification
 
@@ -151,4 +154,3 @@ python inference.py
 ## Research Applications
 
 This environment is built to support beyond-LLM research, including **Graph Neural Networks (GNN)**. The provided `GridGNN` baseline demonstrates how nodal features (voltage, injection, priority) can be processed through Graph Convolutional layers to learn topology-aware switching policies.
-
