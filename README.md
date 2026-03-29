@@ -1,8 +1,7 @@
 # Smart Grid Triage: Autonomous Fault Isolation and Load-Shedding Environment
 
-🚀 **Live API / Interactive Demo:** [Hugging Face Space](#)
-
-📖 **API Documentation (Swagger UI):** [Test the Endpoints Here](#)
+🚀 **Live API / Interactive Demo:** [Hugging Face Space](https://huggingface.co/spaces/YukiCodepth/smart-grid-triage-live)  
+📖 **API Documentation (Swagger UI):** [Test the Endpoints Here](https://yukicodepth-smart-grid-triage-live.hf.space/docs)
 
 ---
 
