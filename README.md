@@ -134,7 +134,7 @@ python inference.py
 For evaluation purposes, the repository includes a standalone stress-testing script to validate the throughput and stability of the OpenEnv API and the underlying physics engine under rapid concurrent stepping.
 ```bash
 python stress_test.py
-
+```
 -----
 
 ## Repository Structure
@@ -153,7 +153,7 @@ python stress_test.py
 ├── Dockerfile           # HF Spaces Deployment Config
 ├── app.py               # FastAPI Server for Automated Grading
 └── openenv.yaml         # Environment Manifest
-
+```
 -----
 
 ## Research Applications
