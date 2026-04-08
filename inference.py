@@ -44,7 +44,10 @@ def build_prompt(obs) -> str:
 
 def evaluate_task(task_file: str, client: OpenAI) -> float:
     """Runs a single scenario and returns the normalized score (0.0 - 1.0)."""
-    print(f"\n--- 🚀 Evaluating Scenario: {task_file} ---")
+    print(f"\n--- 🚀 Evaluating Scenario: {task_file} ---", flush=True)
+    
+    # 🔴 MANDATORY GRADER LOG: [START]
+    print(f"[START] task={task_file}", flush=True)
     
     # Initialize the environment with the YAML scenario
     env = SmartGridTriageEnv(f"scenarios/{task_file}")
@@ -72,18 +75,21 @@ def evaluate_task(task_file: str, client: OpenAI) -> float:
         except Exception as e:
             # If the LLM fails or the API times out, we default to 'noop' 
             # to ensure the simulation continues without crashing.
-            print(f"⚠️ Agent Logic Error: {e}. Defaulting to 'noop'.")
+            print(f"⚠️ Agent Logic Error: {e}. Defaulting to 'noop'.", flush=True)
             action = GridAction(action_type="noop")
 
-        print(f"Step {obs.timestep}: Agent Action -> {action.action_type} on {action.target_id}")
+        print(f"Step {obs.timestep}: Agent Action -> {action.action_type} on {action.target_id}", flush=True)
         
         # Advance the environment physics by one tick
         obs, reward, is_done, info = env.step(action)
         total_reward += reward
         
+        # 🔴 MANDATORY GRADER LOG: [STEP]
+        print(f"[STEP] step={obs.timestep} reward={reward}", flush=True)
+        
         if is_done:
             # Log the final telemetry provided by our custom logger
-            print(f"📊 Final Telemetry: {json.dumps(info.get('telemetry', {}), indent=2)}")
+            print(f"📊 Final Telemetry: {json.dumps(info.get('telemetry', {}), indent=2)}", flush=True)
             break
             
     # Calculate a normalized score (0.0 to 1.0) based on perfect performance
@@ -91,12 +97,15 @@ def evaluate_task(task_file: str, client: OpenAI) -> float:
     max_possible = sum(n.priority_weight for n in obs.nodes) * env.max_timesteps
     normalized_score = max(0.0, min(1.0, total_reward / max_possible))
     
-    print(f"✅ Task Complete. Final Normalized Score: {normalized_score:.2f}/1.0")
+    # 🔴 MANDATORY GRADER LOG: [END]
+    print(f"[END] task={task_file} score={normalized_score:.4f} steps={obs.timestep}", flush=True)
+    
+    print(f"✅ Task Complete. Final Normalized Score: {normalized_score:.2f}/1.0", flush=True)
     return normalized_score
 
 if __name__ == "__main__":
     if not API_KEY:
-        print("❌ ERROR: Missing API Key! Set HF_TOKEN or OPENAI_API_KEY environment variables.")
+        print("❌ ERROR: Missing API Key! Set HF_TOKEN or OPENAI_API_KEY environment variables.", flush=True)
         exit(1)
         
     # Initialize the client with the specified Base URL and Key
@@ -110,6 +119,6 @@ if __name__ == "__main__":
         score = evaluate_task(task, client)
         final_scores.append(score)
         
-    print("\n" + "="*40)
-    print(f"🏆 TOTAL BENCHMARK SCORE: {sum(final_scores)/len(final_scores):.2f}/1.0")
-    print("="*40)
+    print("\n" + "="*40, flush=True)
+    print(f"🏆 TOTAL BENCHMARK SCORE: {sum(final_scores)/len(final_scores):.2f}/1.0", flush=True)
+    print("="*40, flush=True)
